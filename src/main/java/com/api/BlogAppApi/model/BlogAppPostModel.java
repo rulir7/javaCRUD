@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,8 +30,19 @@ public class BlogAppPostModel implements Serializable {
     @Column(columnDefinition = "text")
     private String texto;
 
+    @OneToMany
+    private List<PostComentarioModel> postComentario;
+
     public UUID getId() {
         return id;
+    }
+
+    public List<PostComentarioModel> getPostComentario() {
+        return postComentario;
+    }
+
+    public void setPostComentario(List<PostComentarioModel> postComentario) {
+        this.postComentario = postComentario;
     }
 
     public void setId(UUID id) {
